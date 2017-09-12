@@ -1,0 +1,149 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<script src="js/modernizr.custom.js"></script>
+<title> register for competition</title>
+</head>
+<style>
+body {margin:0;
+
+background-color:#F2F9FF;
+overflow-x: hidden;
+overflow-y: scroll;
+}
+
+
+#parent {
+  display: flex;
+}
+</style>
+
+<p >
+<img style="vertical-align:middle" src="logo.png"></img>
+
+<b><font style="color:#14375F; font-size:50px;">MAHAVIR SWAMI INSTITUE OF TECHNOLOGY</font></b></p>
+
+<body>
+<div id="parent">
+<div>
+<img style="vertical-align:middle; " src="background1.gif"></img>
+</div >
+<div class="container" style="width:100%;">
+			<!-- Top Navigation -->
+			
+			<header class="codrops-header">
+				<a><h1 ><b>Code it!!</b><span>programming begins here!</span></h1>	</a>
+			</header>
+			<section style="background-color:#F2F9FF;">
+				<form id="theForm" method="post" action="register.php" class="simform" autocomplete="off">
+					<div class="simform-inner">
+						<ol class="questions">
+							<li>
+								<span><label for="q1">Your Name?</label></span>
+								<input id="q1" name="q1" type="text"/>
+							</li>
+							<li>
+								<span><label for="q2">Roll No.?</label></span>
+								<input id="q2" name="q2" type="text"/>
+							</li>
+							<li>
+								<span><label for="q3">College?</label></span>
+								<input id="q3" name="q3" type="text"/>
+							</li>
+							<li>
+								<span><label for="q4">Branch\Semester?</label></span>
+								<input id="q4" name="q4" type="text"/>
+							</li>
+							<li>
+								<span><label for="q5">Password</label></span>
+								<input id="q5" name="q5" type="text"/>
+							</li>
+							<li>
+								<span><label for="q6">confirms password</label></span>
+								<input id="q6" name="q6" type="text"/>
+							</li>
+						</ol><!-- /questions -->
+						<button class="submit" type="submit">Send answers</button>
+						<div class="controls">
+							<button class="next"></button>
+							<div class="progress"></div>
+							<span class="number">
+								<span class="number-current"></span>
+								<span class="number-total"></span>
+							</span>
+							<span class="error-message"></span>
+						</div><!-- / controls -->
+					</div><!-- /simform-inner -->
+					<span class="final-message"></span>
+				</form><!-- /simform -->			
+			</section>
+		</div>
+</div>
+<script src="js/classie.js"></script>
+		<script src="js/stepsForm.js"></script>
+		<script>
+			var theForm = document.getElementById( 'theForm' );
+
+			new stepsForm( theForm, {
+				onSubmit : function( form ) {
+					// hide form
+					classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
+
+					/*
+					form.submit()
+					or
+					AJAX request (maybe show loading indicator while we don't have an answer..)
+					*/
+					if(document.getElementById("q5").value==document.getElementById("q6").value){
+sendData();
+					// let's just simulate something...
+					var messageEl = theForm.querySelector( '.final-message' );
+					messageEl.innerHTML = 'Successfully registered!<br><a href="log.html">login here!</a>';
+					classie.addClass( messageEl, 'show' );
+					}else{
+					alert("passwords don't match Try again!!");
+					window.location.href='index.html';
+					}
+					
+				}
+			} );
+			function sendData() {
+    var XHR = new XMLHttpRequest();
+
+    // Bind the FormData object and the form element
+    var FD = new FormData(form);
+
+    // Define what happens on successful data submission
+    XHR.addEventListener("load", function(event) {
+    });
+
+    // Define what happens in case of error
+    XHR.addEventListener("error", function(event) {
+      alert('Oups! Something goes wrong.');
+    });
+
+    // Set up our request
+    XHR.open("POST", "register.php");
+
+    // The data sent is what the user provided in the form
+    XHR.send(FD);
+  }
+ 
+  // Access the form element...
+  var form = document.getElementById("theForm");
+
+  
+
+    
+		</script>
+</body>
+
+
+
+</html>
